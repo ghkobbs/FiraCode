@@ -1,6 +1,6 @@
 ## Fira Code: monospaced font with programming ligatures
 
-<img src="http://s.tonsky.me/imgs/fira_code_logo.svg">
+<img src="./showcases/fira_code_logo.svg">
 
 ### Problem
 
@@ -8,7 +8,7 @@ Programmers use a lot of symbols, often encoded with several characters. For the
 
 ### Solution
 
-#### [Download v1.206](https://github.com/tonsky/FiraCode/releases/download/1.206/FiraCode_1.206.zip) · [How to install](https://github.com/tonsky/FiraCode/wiki) · [Troubleshooting](https://github.com/tonsky/FiraCode/wiki#troubleshooting) · [News & updates](https://twitter.com/FiraCode)
+#### [Download v.2](https://github.com/tonsky/FiraCode/releases/download/2/FiraCode_2.zip) · [How to install](https://github.com/tonsky/FiraCode/wiki) · [Troubleshooting](https://github.com/tonsky/FiraCode/wiki#troubleshooting) · [News & updates](https://twitter.com/FiraCode)
 
 <a href="https://patreon.com/tonsky" target="_blank"><img src="./fira_code_patreon.png"></a>
 
@@ -54,6 +54,12 @@ Swift:
 
 <img src="./showcases/swift.png">
 
+### Stylistic sets
+
+See [How to enable](https://github.com/tonsky/FiraCode/wiki/How-to-enable-stylistic-sets)
+
+<img src="./showcases/stylistic_sets.png">
+
 
 ### Terminal support
 
@@ -64,12 +70,12 @@ Swift:
 | **Hyper.app**      | **Cmder**          |
 | **iTerm 2** ([3.1+](https://gitlab.com/gnachman/iterm2/issues/3568#note_13118332)) | **ConEmu** |
 | **Kitty**          | **GNOME Terminal** |
-| **Konsole**        | **mate-terminal**  | 
+| **Konsole**        | **mate-terminal**  |
 | **mintty** (partial support [2.8.3+](https://github.com/mintty/mintty/issues/601))| **PuTTY** |
 | **QTerminal**      | **rxvt**           |
-| **Terminal.app**   | **ZOC** (Windows)  |
-| **Termux**         | **gtkterm, guake, LXTerminal, sakura, Terminator, xfce4-terminal,** and other libvte-based terminals ([bug report](https://bugzilla.gnome.org/show_bug.cgi?id=584160)) |
-| **Token2Shell/MD** |
+| **Terminal.app**   | **xterm**          |
+| **Termux**         | **ZOC** (Windows)  |
+| **Token2Shell/MD** | **gtkterm, guake, LXTerminal, sakura, Terminator, xfce4-terminal,** and other libvte-based terminals ([bug report](https://bugzilla.gnome.org/show_bug.cgi?id=584160)) |
 | **upterm**         |
 | **Windows Terminal** |
 | **ZOC** (macOS)    |
@@ -81,23 +87,24 @@ Swift:
 | **Abricotine** | **Arduino IDE** |
 | **Android Studio** (2.3+, [instructions](https://github.com/tonsky/FiraCode/wiki/Intellij-products-instructions)) | **Adobe Dreamweaver** |
 | **Anjuta** (unless at the EOF) | **Delphi IDE** |
-| **AppCode** (2016.2+, [instructions](https://github.com/tonsky/FiraCode/wiki/Intellij-products-instructions)) | **Eclipse** (Win, [vote here](https://bugs.eclipse.org/bugs/show_bug.cgi?id=398656)) |
+| **AppCode** (2016.2+, [instructions](https://github.com/tonsky/FiraCode/wiki/Intellij-products-instructions)) | **Eclipse** (Windows, [vote here](https://bugs.eclipse.org/bugs/show_bug.cgi?id=398656)) |
 | **Atom** 1.1 or newer ([instructions](https://github.com/tonsky/FiraCode/wiki/Atom-instructions)) | Standalone **Emacs** ([workaround](https://github.com/tonsky/FiraCode/wiki/Emacs-instructions)) |
-| **BBEdit/TextWrangler** (v. 11 only, [instructions](https://github.com/tonsky/FiraCode/wiki/BBEdit-instructions)) | **gVim** (Windows [workaround](https://github.com/tonsky/FiraCode/issues/462)) |
-| **Brackets** (with [this plugin](https://github.com/polo2ro/firacode-in-brackets)) | **IDLE** |
-| **Chocolat** | **KDevelop 4** |
-| **CLion** (2016.2+, [instructions](https://github.com/tonsky/FiraCode/wiki/Intellij-products-instructions)) | **Monkey Studio IDE** |
-| **Cloud9** ([instructions](https://github.com/tonsky/FiraCode/wiki/Cloud9-Instructions)) |  |
+| **BBEdit/TextWrangler** (v. 11 only, [instructions](https://github.com/tonsky/FiraCode/wiki/BBEdit-instructions)) | **Geany** (Windows) |
+| **Brackets** (with [this plugin](https://github.com/polo2ro/firacode-in-brackets)) | **gVim** (Windows [workaround](https://github.com/tonsky/FiraCode/issues/462)) |
+| **Chocolat** | **IDLE** |
+| **CLion** (2016.2+, [instructions](https://github.com/tonsky/FiraCode/wiki/Intellij-products-instructions)) | **KDevelop 4** |
+| **Cloud9** ([instructions](https://github.com/tonsky/FiraCode/wiki/Cloud9-Instructions)) | **Monkey Studio IDE** |
 | **Coda 2** |  |
 | **CodeLite** |  |
-| **Eclipse** (Mac 4.7+, Linux) |  |
+| **Eclipse** (macOS 4.7+, Linux) |  |
 | **elementary Code** |  |
-| **Geany** |
+| **Geany** (macOS) |
 | **gEdit / Pluma** |
 | **GNOME Builder** |
 | **GoormIDE** ([instructions](https://github.com/tonsky/FiraCode/wiki/GoormIDE-Instructions)) |
 | **IntelliJ IDEA** (2016.2+, [instructions](https://github.com/tonsky/FiraCode/wiki/Intellij-products-instructions)) |
 | **Kate, KWrite** |
+| **KDevelop 5+** |
 | **Komodo** |
 | **Leafpad** |
 | **LibreOffice** |
@@ -109,8 +116,9 @@ Swift:
 | **Mousepad** |
 | **NeoVim-gtk** |
 | **NetBeans** |
-| **Notepad** (Win) |
+| **Notepad** (Windows) |
 | **Notepad++** (with a [workaround](https://github.com/notepad-plus-plus/notepad-plus-plus/issues/2287#issuecomment-256638098))  |
+| **Notepad3** ([instructions](https://github.com/rizonesoft/Notepad3/issues/361#issuecomment-365977420))|
 | **PhpStorm** (2016.2+, [instructions](https://github.com/tonsky/FiraCode/wiki/Intellij-products-instructions)) |
 | **PyCharm** (2016.2+, [instructions](https://github.com/tonsky/FiraCode/wiki/Intellij-products-instructions)) |
 | **QtCreator** |
@@ -122,12 +130,11 @@ Swift:
 | **SublimeText** (3146+) |
 | **Spyder IDE** (only with Qt5) |
 | **SuperCollider 3** |
-| **TextAdept** (Linux, Mac) |
+| **TextAdept** (Linux, macOS) |
 | **TextEdit** |
 | **TextMate 2** |
 | **VimR** ([instructions](https://github.com/qvacua/vimr/wiki#ligatures)) |
-| **Visual Studio 2015** |
-| **Visual Studio 2017** ([instructions](https://github.com/tonsky/FiraCode/wiki/Visual-Studio-2017-Instructions)) |
+| **Visual Studio** (2015+, [instructions](https://github.com/tonsky/FiraCode/wiki/Visual-Studio-Instructions)) |
 | **Visual Studio Code** ([instructions](https://github.com/tonsky/FiraCode/wiki/VS-Code-Instructions)) |
 | **WebStorm** (2016.2+, [instructions](https://github.com/tonsky/FiraCode/wiki/Intellij-products-instructions)) |
 | **Xamarin Studio/Monodevelop** |
@@ -138,21 +145,25 @@ Swift:
 
 ```html
 <!-- HTML -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.207/distr/fira_code.css">
 ```
 
 ```css
 /* CSS */
-@import url(https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css);
+@import url(https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.207/distr/fira_code.css);
 ```
 
 ```css
 /* Specify in CSS */
-font-family: 'Fira Code', monospace;
+code { font-family: 'Fira Code', monospace; }
+
+@supports (font-variation-settings: normal) {
+  code { font-family: 'Fira Code VF', monospace; }
+}
 ```
 
 
-- IE 10+, Edge: enable with `font-feature-settings: "calt" 1;`
+- IE 10+, Edge: enable with `font-feature-settings: "calt";`
 - Firefox
 - Safari
 - Chromium-based browsers (Chrome, Opera)
@@ -181,25 +192,23 @@ Other monospaced fonts with ligatures:
 - [Fixedsys Excelsior](https://github.com/kika/fixedsys) (free)
 - [Iosevka](https://be5invis.github.io/Iosevka/) (free)
 - [DejaVu Sans Code](https://github.com/SSNikolaevich/DejaVuSansCode) (free)
+- [Victor Mono](https://rubjo.github.io/victor-mono/) (free)
+- [Cascadia Code](https://github.com/microsoft/cascadia-code) (free)
 
-### Building
+### Building Fira Code locally
 
-On macOS:
+In case you want to alter FiraCode.glyphs and build OTF/TTF/WOFF files yourself, this is setup I use on macOS:
 
+```bash
+# install all required build tools
+./script/bootstrap
+
+# build the font files
+./script/build
+
+# install OTFs to ~/Library/Fonts
+./script/install
 ```
-sudo easy_install pip
-pip install virtualenv --user
-python -m virtualenv venv
-source venv/bin/activate
-pip install gftools
-pip install fontmake
-brew install ttfautohint
-brew install woff2
-brew tap bramstein/webfonttools
-brew install sfnt2woff-zopfli
-```
-
-Run `./build.sh`
 
 ### Credits
 

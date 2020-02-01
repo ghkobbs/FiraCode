@@ -1,7 +1,30 @@
+;; clj -m regen-calt
+
 (ns regen-calt
   (:require
     [clojure.string :as str]
     [glyphs :as glyphs]))
+
+;; No ligature should follow those sequences
+(def ignore-prefixes
+  [["parenleft" "question" "colon"]
+   ;; #578 #624 Regexp lookahead/lookbehind
+   ["parenleft" "question" "equal"]
+   ["parenleft" "question" "less" "equal"]
+   ["parenleft" "question" "exclam"]
+   ["parenleft" "question" "less" "exclam"]])
+
+(defn gen-ignore-prefixes [liga]
+  (str/join
+    (for [prefix ignore-prefixes
+          ;; try to match last N glyphs in `prefix` with N first in `liga`
+          N (range (count liga) 0 -1)
+          :when (= (take-last N prefix) (take N liga))]
+      (str "  ignore sub"
+        " " (str/join " " (drop-last N prefix))
+        " " (first liga) "'"
+        " " (str/join " " (drop 1 liga))
+        ";\n"))))
 
 (def ignores
   { ["slash" "asterisk"]
@@ -23,19 +46,6 @@
     (str
       "  ignore sub slash asterisk' asterisk asterisk;\n"
       "  ignore sub asterisk' asterisk asterisk slash;\n")
-
-    ;; #624 (?=
-    ["question" "equal"]
-    "  ignore sub parenleft question' equal;\n"
-
-    ;; #624 (?<=
-    ["less" "equal"]
-    (str "  ignore sub parenleft question less' equal;\n"
-         "  ignore sub exclam less' equal;\n")
-
-    ;; #624 (?:
-    ["question" "colon"]
-    "  ignore sub parenleft question' colon;\n"
     
     ;; #621 <||>
     ["less" "bar" "bar"]
@@ -92,13 +102,30 @@
     (str "  ignore sub less' less less asterisk;\n"
          "  ignore sub less' less less plus;\n"
          "  ignore sub less' less less dollar;\n")
+
+    ;; 713 |-|
+    ["bar" "hyphen"]
+    "  ignore sub bar' hyphen bar;\n"
+
+    ["hyphen" "bar"]
+    "  ignore sub bar hyphen' bar;\n"
 })
 
+;; DO NOT generate ignores at all
 (def skip-ignores? #{
   ;; #410 <<*>> <<+>> <<$>>
   ["less" "asterisk" "greater"]
   ["less" "plus" "greater"]
   ["less" "dollar" "greater"]
+  ;; #795
+  ["f" "l"] ["F" "l"] ["T" "l"]
+})
+
+;; DO NOT generate ligature
+(def manual? #{
+  ;; /\ \/
+  ["slash" "backslash"]
+  ["backslash" "slash"]
 })
 
 (defn liga->rule
@@ -110,8 +137,10 @@
     2 (let [[a b] liga]
         (str/replace
           (str "lookup 1_2 {\n"
-               "  ignore sub 1 1' 2;\n"
-               "  ignore sub 1' 2 2;\n"
+               (when-not (skip-ignores? liga)
+                 (str "  ignore sub 1 1' 2;\n"
+                      "  ignore sub 1' 2 2;\n"))
+               (gen-ignore-prefixes liga)
                (get ignores liga)
                "  sub LIG 2' by 1_2.liga;\n"
                "  sub 1'  2  by LIG;\n"
@@ -123,6 +152,7 @@
                (when-not (skip-ignores? liga)
                 (str "  ignore sub 1 1' 2 3;\n"
                      "  ignore sub 1' 2 3 3;\n"))
+               (gen-ignore-prefixes liga)
                (get ignores liga)
                "  sub LIG LIG 3' by 1_2_3.liga;\n"
                "  sub LIG  2' 3  by LIG;\n"
@@ -132,8 +162,10 @@
     4 (let [[a b c d] liga]
         (str/replace
           (str "lookup 1_2_3_4 {\n"
-               "  ignore sub 1 1' 2 3 4;\n"
-               "  ignore sub 1' 2 3 4 4;\n"
+               (when-not (skip-ignores? liga)
+                 (str "  ignore sub 1 1' 2 3 4;\n"
+                      "  ignore sub 1' 2 3 4 4;\n"))
+               (gen-ignore-prefixes liga)
                (get ignores liga)
                "  sub LIG LIG LIG 4' by 1_2_3_4.liga;\n"
                "  sub LIG LIG  3' 4  by LIG;\n"
@@ -154,20 +186,25 @@
                               (str "### start of generated calt\n" calt "\n### end of generated calt\n"))]
     (assoc-in font [:features idx :code] code')))
 
+(defn compare-ligas [l1 l2]
+  (cond
+    (> (count l1) (count l2)) -1
+    (< (count l1) (count l2)) 1
+    :else (compare l1 l2)))
+
 (defn -main [& args]
-  (let [file  (or (first args) "FiraCode.glyphs")
-        _     (println "Parsing" file "...")
-        font  (glyphs/parse (slurp file))
+  (let [path  (or (first args) "FiraCode.glyphs")
+        font  (glyphs/load path)
         ligas (for [g (:glyphs font)
                     :let [name (:glyphname g)]
                     :when (str/ends-with? name ".liga")
-                    :let [[_ liga] (re-matches #"([a-z_]+)\.liga" name)]]
+                    :when (not= "0" (:export g))
+                    :let [[_ liga] (re-matches #"([A-Za-z_]+)\.liga" name)]]
                 (str/split liga #"_")) ;; [ ["dash" "greater" "greater"] ... ]
-        calt  (->> ligas (sort-by count) (reverse) (map liga->rule) (str/join "\n\n"))
+        calt  (->> ligas (remove manual?) (sort compare-ligas) (map liga->rule) (str/join "\n\n"))
         font' (replace-calt font calt)]
 
-    (println "Saving" file "...")
-    (spit file (glyphs/serialize font'))
+    (glyphs/save! path font')
 
     (println "Total ligatures count:" (count ligas))
     (println " " (->> ligas
@@ -176,5 +213,3 @@
                       (map (fn [[k v]] (str (count v) (case k 2 " pairs", 3 " triples", 4 " quadruples"))))
                       (str/join ", ")))
     (println)))
-
-;; (-main)

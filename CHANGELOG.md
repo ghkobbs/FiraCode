@@ -2,10 +2,73 @@
 
 All notable changes to this project will be documented in this file.
 
-#### 1.207 (WIP)
+#### 2.0 (September 9, 2019)
+
+- Characters U+25DE `◟` and U+25DF `◞` were swapped [#761]
+- Added Box Drawing Light Arcs U+256D `╭` U+256E `╮` U+256F `╯` U+2570 `╰` [#349] [#702] [#714] [#725]
+- Added Mathematical Angle Brackets U+27E8 `⟨` U+27E9 `⟩` [#763]
+- Added Light and heavy dashed lines U+2504..U+250B `┄┅┆┇┈┉┊┋` [#702]
+- Adjusted Box drawings double dashes U+254C..U+254F `╌╍╎╏`
+- Fixed outlines of U+04FA `Ӻ` and U+04FB `ӻ` [#806]
+- Added Not identical to U+2262 `≢` [#396]
+- Added Latin Capital Letter Sharp S U+1E9E `ẞ` [#587]
+- Tuned position and width of U+2044 Fraction Slash ` ⁄ ` [#588] and U+2215 Division Slash `∕` [#805]
+- Added U+1405 Canadian Syllabics O `ᐅ` and U+140A Canadian Syllabics A `ᐊ` [#666]
+- Added U+2234 Therefore `∴` and U+2235 Because `∵` [#669]
+- Added U+239B..U+23AD multi-line brackets [#675]
+
+```
+⎛ 1 ⎞ ⎡ a ⎤ ⎧ x ⎫
+⎜ 2 ⎟ ⎢ b ⎥ ⎪ y ⎪
+⎜ 3 ⎟ ⎢ c ⎥ ⎨ z ⎬
+⎜ 4 ⎟ ⎢ d ⎥ ⎪ y ⎪
+⎝ 5 ⎠ ⎣ e ⎦ ⎩ x ⎭
+```
+
+- Added U+27F0..U+27FF Supplemental Arrows-A `⟲⟳⟰⟱⟴⟵⟶⟷⟸⟹⟺⟻⟼⟽⟾⟿` [#677]
+- Added U+2400..U+2426 Control Pictures `␆␈␇␣␢␘␍␐␡␥␔␑␓␒␙␃␄␗␅␛␜␌␝␉␊␕␤␀␞␏␎␠␁␂␚␦␖␟␋` [#764]
+- Added U+2388 Helm Symbol `⎈` [#766]
+- Added U+2016 Double Vertical Line `‖` [#780]
+- Tuned metrics (1870,-530 -> 1800,-600, upm 2000 -> 1950, hopefully fix [#241] [#252] [#459] [#552] [#798])
+- Box characters to not overflow line height, taller `|` [#449]
+- Added few technical symbols [#799]:
+  - U+21A9 Leftwards arrow with hook (Return) `↩`
+  - U+21DE Upwards arrow with double stroke (Page Up) `⇞`
+  - U+21DF Downwards arrow with double stroke (Page down) `⇟`
+  - U+21E4 Left Tab Arrow `⇤`
+  - U+21E5 Right Tab Arrow `⇥`
+  - U+2300 Diameter sign `⌀`
+  - U+2303 Up Arrowhead (Control) `⌃`
+  - U+2304 Down Arrowhead `⌄`
+  - U+2305 Projective `⌅`
+  - U+2306 Perspective `⌆`
+  - U+2318 Place of interest sign (Command) `⌘`
+  - U+2324 Up Arrowhead between two horizontal bars `⌤`
+  - U+2325 Option Key `⌥`
+  - U+2387 Alternative Key Symbol `⎇`
+  - U+238B Broken Circle with Northwest Arrow (Escape) `⎋`
+  - U+23CF Eject symbol `⏏`
+- Added Coq logical and ` /\ ` and logical or ` \/ ` ligatures, U+2227 `∧` and U+2228 `∨` [#191] [#488] [#738] [#810]
+- Added SystemVerilog `|->` `|=>` and `<-|` `<=|` for symmetry [#695]
+- Added Forces `||-` ligature and U+22A2..U+22AF `⊢ ⊣ ⊤ ⊥ ⊦ ⊧ ⊨ ⊩ ⊪ ⊫ ⊬ ⊭ ⊮ ⊯` [#709]
+- Added `fl` `Fl` `Tl` ligatures, adjusted `fi` `fj` pairs [#795]
+- Disabled ligatures after regexp lookahead/lookbehinds `(?<=<` `(?<=>` `(?<==>` `(?<=|` `(?<==` `(?=:=` `(?=!=` `(?==` `(?===` `(?==>` `(?=>` `(?=>>` `(?=<<` `(?=/=` `(?!!` `(?!!.` `(?!=` `(?!==` `(?<!!` `(?<!!.` `(?<!=` `(?<!==` `(?<!--` [#578]
+- Removed `..=` [#757]
+- Alternatives (stylistic sets):
+  - Lowercase `r` (ss01) [#601]
+  - Less than/greater than `<=` `>=` (ss02) [#263] [#617]
+  - Ampersand `&` (ss03) [#617]
+  - Dollar sign `$` (ss04) [#617]
+  - At sign `@` (ss05) [#617] [#748] [#817]
+  - Thin backslash (ss06) [#577 #720 #825]
+  - Dotted zero `0` (zero, ss19)
+  - Old-style figures (onum, ss20) [#561] [#715]
+- Old-style figures no longer prevent ligatures [#561] [#715]
+
+#### 1.207 (April 6, 2019)
 
 - Variable TTF, cleaned up [many small Light weight errors](https://github.com/thundernixon/FiraCode/blob/qa/googlefonts-qa/notes/outline-checks.md) (done by @thundernixon, PR #735)
-- Dropped EOF/WOFF which were only useful for IE 6-11
+- Dropped EOF which were only useful for IE 6-11
 - Fixed different vertical position of `<=` `>=` in Light and Bold caused during [#483]
 
 #### 1.206 (September 30, 2018)
